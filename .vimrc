@@ -94,10 +94,10 @@ scriptencoding utf-8
 "colorscheme
 "colorscheme wombat256
 "colorscheme desert
-"colorscheme molokai
+colorscheme molokai
 "syntax enable
-set background=dark
-colorscheme solarized
+"set background=dark
+"colorscheme solarized
 
 " remove autocomment
 autocmd FileType * set formatoptions-=ro

@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/narita.tatsuro/gitrepos/death/app/lib/Death/Config/Application'
+let g:netrw_dirhist_2='/Users/narita.tatsuro/gitrepos/death/app/submodules/temperance'
+let g:netrw_dirhist_3='/Users/narita.tatsuro/gitrepos/hangedman/app/lib/HangedMan/Web/Logic/Account'
+let g:netrw_dirhist_4='/Users/narita.tatsuro/gitrepos/hangedman/app/lib/HangedMan'
+let g:netrw_dirhist_5='/Users/narita.tatsuro/gitrepos/hangedman/app/lib'
+let g:netrw_dirhist_6='/Users/narita.tatsuro/gitrepos/hangedman/app'

@@ -11,6 +11,7 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'VimClojure'
 "NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'jpalardy/vim-slime'
@@ -59,8 +60,18 @@ set fileencodings=utf8,iso-2022-jp,cp932,euc-jp
 
 set t_Co=256
 
-"set cursorline
-"highlight  cursorline cterm=NONE ctermbg=17  ctermfg=none guibg=Grey90 guifg=white
+" カーソル行をハイライト
+set cursorline
+" カレントウィンドウにのみ罫線を引く
+augroup cch
+autocmd! cch
+autocmd WinLeave * set nocursorline
+autocmd WinEnter,BufRead * set cursorline
+augroup END
+
+hi clear CursorLine
+hi CursorLine gui=underline
+highlight CursorLine ctermbg=black guibg=black
 
 set clipboard=unnamed,autoselect
 set incsearch
@@ -215,8 +226,30 @@ inoremap jj <Esc>
 inoremap .. ->
 
 
-
+"------------------------------------
+" unite.vim
+"------------------------------------
+" 入力モードで開始する
+let g:unite_enable_start_insert=0
+" バッファ一覧
+noremap <C-U><C-B> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
+" 最近使ったファイルの一覧
+noremap <C-U><C-R> :Unite file_mru<CR>
+" レジスタ一覧
+noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
+" ファイルとバッファ
+noremap <C-U><C-U> :Unite buffer file_mru<CR>
+" 全部
+noremap <C-U><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+" Unite Outiline
+noremap <C-U><C-O> :Unite outline<CR>
 -
+
 "------------------------------------------------------------------------------------
 " For neocomplcache
 "------------------------------------------------------------------------------------

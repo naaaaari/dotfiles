@@ -26,53 +26,28 @@ NeoBundle 'altercation/vim-colors-solarized'
 
 filetype plugin indent on     " required!
 filetype indent on
-syntax on
+syntax enable
 
 set autoread
-
 set splitbelow
 set splitright
-
 set autoindent
 set smartindent
-
 set hlsearch
 set nowrapscan
 set showmatch
 set showmode
-
 set expandtab
 set tabstop=4
 set shiftwidth=4
-
 set whichwrap=b,s,h,l,<,>,[,]
 set backspace=indent,eol,start
 set browsedir=buffer
-
 set laststatus=2
 set showcmd
-
 set wildmode=list,full
-
-
 set fileencodings=utf8,iso-2022-jp,cp932,euc-jp
-
-
-set t_Co=256
-
-" カーソル行をハイライト
-set cursorline
-" カレントウィンドウにのみ罫線を引く
-augroup cch
-autocmd! cch
-autocmd WinLeave * set nocursorline
-autocmd WinEnter,BufRead * set cursorline
-augroup END
-
-hi clear CursorLine
-hi CursorLine gui=underline
-highlight CursorLine ctermbg=black guibg=black
-
+"set t_Co=256
 set clipboard=unnamed,autoselect
 set incsearch
 set smartindent
@@ -82,7 +57,7 @@ if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-highlight Pmenu ctermbg=4
+"highlight Pmenu ctermbg=4
 
 "swp files
 set directory-=.
@@ -96,19 +71,35 @@ set list
 set lcs=tab:>-,trail:_,extends:>,precedes:<
 
 scriptencoding utf-8
-"augroup highlightIdegraphicSpace
-"    autocmd!
-"    autocmd ColorScheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
-"    autocmd VimEnter,WinEnter * match IdeographicSpace /　/
-"augroup END
 
-"colorscheme
-"colorscheme wombat256
-"colorscheme desert
-colorscheme molokai
-"syntax enable
-"set background=dark
-"colorscheme solarized
+" カレントウィンドウにのみ罫線を引く
+set cursorline
+"augroup cch
+"    autocmd! cch
+"    autocmd WinLeave * set nocursorline
+"    autocmd WinEnter,BufRead * set cursorline
+"augroup END
+hi clear CursorLine
+hi CursorLine gui=underline
+"
+""colorscheme
+""colorscheme wombat256
+""colorscheme desert
+""colorscheme molokai
+"------------------------------------
+" Solarized Configure
+"------------------------------------
+"let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_bold=1
+"let g:solarized_degrade=1
+"let g:solarized_underline=1
+"let g:solarized_italic=1
+let g:solarized_contrast='high'
+"let g:solarized_visibility='high'
+colorscheme solarized
+set background=dark
+
 
 " remove autocomment
 autocmd FileType * set formatoptions-=ro
@@ -157,8 +148,8 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " for perl
-inoremap <C-a> $
-"inoremap <C-a> @
+inoremap <C-d> $
+inoremap <C-a> @
 inoremap <C-p> <C-x><C-o>
 
 " for others
@@ -215,8 +206,8 @@ nnoremap <silent> cy   ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 nnoremap gf <C-w>gf
 
 "カーソル一文字単位移動
-inoremap <silent> <C-s> <Left>
-inoremap <silent> <C-d> <Right>
+"inoremap <silent> <C-s> <Left>
+"inoremap <silent> <C-d> <Right>
 
 "単語単位移動（行末で止めたい場合）
 inoremap <silent> <C-f> <S-Left>
@@ -247,7 +238,7 @@ noremap <C-U><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru 
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " Unite Outiline
-noremap <C-U><C-O> :Unite outline<CR>
+noremap <C-U><C-E> :Unite outline<CR>
 -
 
 "------------------------------------------------------------------------------------

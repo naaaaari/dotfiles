@@ -16,6 +16,9 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'Shougo/neocomplcache-rsense', { 'autoload' : { 'filetypes' : ['ruby'], }, }
+let g:neocomplcache#sources#rsense#home_directory = '/usr/local/Cellar/rsense/0.3/libexec'
 
 NeoBundle 'Align'
 NeoBundle 'skammer/vim-css-color'
@@ -103,6 +106,9 @@ set background=dark
 
 " remove autocomment
 autocmd FileType * set formatoptions-=ro
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+ 
 
 " for perl files
 "autocmd BufNewFile,BufRead *.psgi set filetype=perl
@@ -216,6 +222,12 @@ inoremap <silent> <C-b> <S-Right>
 inoremap jj <Esc>
 inoremap .. ->
 
+imap <C-o> <C-x><C-o>
+
+inoremap {{ {}<Left>
+inoremap [[ []<Left>
+inoremap "" ""<Left>
+inoremap '' ''<Left>
 
 "------------------------------------
 " unite.vim
@@ -313,7 +325,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'

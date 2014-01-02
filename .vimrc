@@ -226,7 +226,6 @@ inoremap {{ {}<Left>
 inoremap [[ []<Left>
 inoremap "" ""<Left>
 inoremap '' ''<Left>
->>>>>>> 3468d8c20835e796be3d97ab9457fbf94f04d5d7
 
 "------------------------------------
 " unite.vim

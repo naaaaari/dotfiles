@@ -16,6 +16,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'thinca/vim-quickrun'
 
 NeoBundle 'Align'
 NeoBundle 'skammer/vim-css-color'
@@ -52,6 +53,7 @@ set clipboard=unnamed,autoselect
 set incsearch
 set smartindent
 set smarttab
+"set scrolloff=999
 
 if exists('&ambiwidth')
   set ambiwidth=double
@@ -72,7 +74,6 @@ set lcs=tab:>-,trail:_,extends:>,precedes:<
 
 scriptencoding utf-8
 
-" カレントウィンドウにのみ罫線を引く
 set cursorline
 "augroup cch
 "    autocmd! cch
@@ -113,7 +114,6 @@ autocmd FileType * set formatoptions-=ro
 "---------------------------------------------------------------------
 " Key mappings
 "---------------------------------------------------------------------
-
 
 " mapleader
 let mapleader = ","
@@ -167,9 +167,6 @@ nnoremap <Leader>a <Esc>:Ref alc<Space>
 " for perldoc
 nnoremap <Leader>p <Esc>:Ref perldoc<Space>
 
-
-" expand path
-
 " add \n
 nnoremap U :<C-u>call append(expand('.'), '')<Cr>j
 
@@ -216,6 +213,7 @@ inoremap <silent> <C-b> <S-Right>
 inoremap jj <Esc>
 inoremap .. ->
 
+set pastetoggle=<F2>
 
 "------------------------------------
 " unite.vim
@@ -240,6 +238,36 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 " Unite Outiline
 noremap <C-U><C-E> :Unite outline<CR>
 -
+
+"------------------------------------
+" quick-run
+"------------------------------------
+" quickrun && watchdogs {{{
+let g:quickrun_config = {}
+let g:quickrun_config = {
+\   "_" : {
+\       "hook/close_unite_quickfix/enable_hook_loaded" : 1,
+\       "hook/unite_quickfix/enable_failure" : 1,
+\       "hook/close_quickfix/enable_exit" : 1,
+\       "hook/close_buffer/enable_failure" : 1,
+\       "hook/close_buffer/enable_empty_data" : 1,
+\       "outputter" : "multi:buffer:quickfix",
+\       "outputter/buffer/into" : 1,
+\       "hook/inu/enable" : 1,
+\       "hook/inu/wait" : 20,
+\       "runner" : "vimproc",
+\       "runner/vimproc/updatetime" : 40,
+\   }
+\}
+
+let g:quickrun_config['perl']= {
+\ 'command': 'prove',
+\ 'cmdopt': '--norc --nocolor --timer --trap -lwv --exec "perl -Ilib -It/lib -MProject::Libs -MTest::Name::FromLine"',
+\ }
+
+" <C-c> で実行を強制終了させる
+" quickrun.vim が実行していない場合には <C-c> を呼び出す
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 
 "------------------------------------------------------------------------------------
 " For neocomplcache

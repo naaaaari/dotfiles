@@ -115,7 +115,8 @@ autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 "autocmd BufNewFile,BufRead *.psgi set filetype=perl
 "autocmd BufNewFile,BufRead *.t set filetype=perl
 
-
+"for golang
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 
 "---------------------------------------------------------------------
 " Key mappings

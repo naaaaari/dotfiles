@@ -1,5 +1,6 @@
 set nocompatible               " be iMproved
 filetype off
+filetype plugin off
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
@@ -27,6 +28,13 @@ NeoBundle 'skammer/vim-css-color'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'altercation/vim-colors-solarized'
 ""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
+
+"for golang
+set runtimepath+=$GOROOT/misc/vim
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+exe "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+set completeopt=menu,preview
+au BufRead,BufNewFile *.go set filetype=go
 
 filetype plugin indent on     " required!
 filetype indent on
@@ -115,8 +123,6 @@ autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 "autocmd BufNewFile,BufRead *.psgi set filetype=perl
 "autocmd BufNewFile,BufRead *.t set filetype=perl
 
-"for golang
-exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 
 "---------------------------------------------------------------------
 " Key mappings
